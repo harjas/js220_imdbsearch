@@ -1,0 +1,17 @@
+{
+  "name": "js220_imdb",
+  "version": "1.0.0",
+  "description": "IMDB Top 250 application built with Angular ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harjas Singh",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "bootstrap": "^3.3.6",
+    "jquery": "^2.2.3"
+  }
+}
