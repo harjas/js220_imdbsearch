@@ -5,7 +5,106 @@
      Think about the experience from the user's perspective. Is this the design you would want
      to experience if you were using someone else's built application?
  -->
-
 <div ng-controller="listController">
-  <h1>This is the list page!</h1>
+  <md-content>
+  	<!--Search-->
+  	<md-card >
+  		<md-card-content>
+  			<!--h2 class="md-display-1">IMDB TOP 250 Search</h2-->
+  			<div layout="row">
+	  			<md-input-container flex="60" class="md-primary">
+				  	<label>Search IMDB Top 250</label>
+				  	<input type="text" ng-model="search.title" ng-keyup="toggleGrid()">
+				  </md-input-container>
+			  </div>
+  		</md-card-content>
+  		<md-card-actions layout="row" layout-align="end center">
+  		   <md-button type="submit" class="md-primary md-hue-2 md-raised" ng-click="galleryPage('/gallery')">Gallery</md-button>
+  		    <!--filter menu-->
+				  <md-menu-bar>
+					 <md-menu>
+					   <md-button ng-click="$mdOpenMenu()">
+					     Sort By
+					   </md-button>
+					   <md-menu-content>
+					   	<span class="md-title">Title</span>
+					    <md-menu-item>
+					    	<md-button ng-click="sortMovies('title')">Ascending</md-button>
+					    </md-menu-item>
+					    <md-menu-item>
+					    	<md-button ng-click="sortMovies('-title')">Descending</md-button>
+					    </md-menu-item>
+					    <md-menu-divider></md-menu-divider>
+					    <span class="md-title">Rank</span>
+							<md-menu-item>
+					    	<md-button ng-click="sortMovies('rank')">Ascending</md-button>
+					    </md-menu-item>
+					    <md-menu-item>
+					    	<md-button ng-click="sortMovies('-rank')">Descending</md-button>
+					    </md-menu-item>
+					  </md-menu-content>
+					 </md-menu>
+					</md-menu-bar>
+  		</md-card-actions>
+  	</md-card>
+  	<!--List-->
+	  <md-grid-list class="show-grid-{{showGrid}}" md-cols="3" md-cols-sm="1" md-cols-md="3" md-cols-lg="5" md-cols-gt-lg="7" md-row-height="4:6" md-gutter="12px" >
+	 	  <md-grid-tile ng-repeat="m in movies | filter:search | orderBy:sort" md-whiteframe="6">
+				<img class="cover" ng-click="showDetails($event, m.imdbID)" src="/data/images/{{m.imdbID}}.jpg" >
+				<span ng-hide="true" ng-model="movieId">{{m.imdbID}}</span>
+				<br/>
+		  	<md-grid-tile-footer class="black">
+		  		<div class="md-subhead">{{m.rank}}. {{m.title}}</div>
+		  	</md-grid-tile-footer>
+	 	  </md-grid-tile>
+	 	</md-grid-list>
+ 	</md-content>
+
+<script type="text/ng-template" id="details.tmpl.html" >
+
+<!--Details dialog-->
+<md-dialog aria-label="movie details" ng-cloak flex="50">
+<md-content layout-padding>
+  <form>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+	    	<md-card>
+	    		<md-card-title>
+	    			<md-card-title-text>
+	    				<span class="md-headline">{{selectedMovie.Title}}</span>
+	    			</md-card-title-text>
+	    			<md-card-title-media>
+	    				<div class="md-media-gt-lg">
+	    					<img src="{{selectedMoviePoster}}" class="md-card-image cover" alt="{{selectedMovie.Title}} image">
+	    				</div>
+	    			</md-card-title-media>
+	    		</md-card-title>
+					
+					<md-card-content>
+					  <p>{{selectedMovie.Plot}}</p>
+					  <p class="md-subhead">IMDB Rating: {{selectedMovie.imdbRating}}</p>
+					  <p class="md-subhead">Rated: {{selectedMovie.Rated}}</p>
+					  <p class="md-subhead">Release Date: {{selectedMovie.Released}}</p>
+					  <p class="md-subhead">Runtime: {{selectedMovie.Runtime}}</p>
+					</md-card-content>
+					<md-card-footer>
+					</md-card-footer>
+				</md-card>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="hide()" md-autofocus>
+        Close
+      </md-button>
+      <md-button >
+      	More Details
+      </md-button>
+      <span flex></span>
+    </md-dialog-actions>
+  </form>
+</md-content>
+</md-dialog>
+</script>
+
+
 </div>

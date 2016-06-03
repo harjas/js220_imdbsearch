@@ -1,0 +1,33 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+  }
+
+body.md-dialog-is-showing {
+    overflow: visible !important;
+}
+
+.background-color{
+	background-color: #29b6f6;
+}
+
+.cover{
+	width: auto;
+	height: 100%;
+}
+
+.black{
+	background: black !important;
+}
+
+.details-cover{
+	width: auto;
+	height: 50%;
+}
+
+.show-grid-false{
+	display: none;
+}
+
+.show-grid-true{
+	display: block;
+}
