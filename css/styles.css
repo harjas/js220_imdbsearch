@@ -1,0 +1,24 @@
+.panel {
+	background-color: #f7f7f7;
+}
+
+.panel h2 {
+	margin-left: 20px;
+}
+
+.panel p {
+	margin-left: 20px;
+}
+
+.movie-row {
+	margin-top: 10px;
+}
+
+.nav li {
+	color: #5a5a5a;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 20px 10px;
+	text-transform: uppercase;
+	display: inline;
+}
