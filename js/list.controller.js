@@ -1,14 +1,23 @@
 angular.module('imdbApp')
-	.controller('listController', ['$scope', 'imdbService', '$location', '$mdDialog', function($scope, imdbService, $location, $mdDialog){
+	.controller('listController', ['$scope', 'imdbService', 'sharedProperties', '$location', '$mdDialog', 
+		function($scope, imdbService, sharedProperties, $location, $mdDialog){
 
 		$scope.movies = [];
-		$scope.showGrid = false;
+		//$scope.showGrid = false;
 		$scope.sort = 'rank';
 		imdbService.getImdbJson().success(function(data){
 			//generateCovers(data);
 			$scope.movies = data;
+			//set shared properties
+			if(sharedProperties.getIMDBIds().length === 0){
+				sharedProperties.setIMDBIds(generateIMDBIdList($scope.movies));
+				console.log('set imdb ids on first load.');
+			}
+			
 		});
 
+		sharedProperties.setCurrentNavItem('list');
+		/*
 		$scope.toggleGrid = function(){
 			if($scope.search.title) {
 				$scope.showGrid = true;
@@ -19,6 +28,14 @@ angular.module('imdbApp')
 
 		$scope.galleryPage = function(p){
 			$location.path(p);
+		}
+		*/
+
+		$scope.moreDetailsPage = function(p){
+			console.log($location.path(p));
+			$location.path(p);
+			//set nav bar item
+			sharedProperties.setCurrentNavItem('details');
 		}
 
 		$scope.showDetails = function(ev, imdbId) {
@@ -37,6 +54,14 @@ angular.module('imdbApp')
 
 		$scope.sortMovies = function(sortBy) {
 			$scope.sort = sortBy;
+		}
+
+		function generateIMDBIdList(movies) {
+			var movieIds = movies.map(function(val) {
+				return val.imdbID;
+			})
+			//console.log('Array of movieIds: ' + movieIds);
+			return movieIds;
 		}
 
 		function DialogController($scope, $mdDialog, movies, imdbId, imdbService) {

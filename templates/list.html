@@ -14,41 +14,41 @@
   			<div layout="row">
 	  			<md-input-container flex="60" class="md-primary">
 				  	<label>Search IMDB Top 250</label>
-				  	<input type="text" ng-model="search.title" ng-keyup="toggleGrid()">
+				  	<input type="text" ng-model="search.title" >
 				  </md-input-container>
 			  </div>
   		</md-card-content>
   		<md-card-actions layout="row" layout-align="end center">
-  		   <md-button type="submit" class="md-primary md-hue-2 md-raised" ng-click="galleryPage('/gallery')">Gallery</md-button>
-  		    <!--filter menu-->
-				  <md-menu-bar>
-					 <md-menu>
-					   <md-button ng-click="$mdOpenMenu()">
-					     Sort By
-					   </md-button>
-					   <md-menu-content>
-					   	<span class="md-title">Title</span>
-					    <md-menu-item>
-					    	<md-button ng-click="sortMovies('title')">Ascending</md-button>
-					    </md-menu-item>
-					    <md-menu-item>
-					    	<md-button ng-click="sortMovies('-title')">Descending</md-button>
-					    </md-menu-item>
-					    <md-menu-divider></md-menu-divider>
-					    <span class="md-title">Rank</span>
-							<md-menu-item>
-					    	<md-button ng-click="sortMovies('rank')">Ascending</md-button>
-					    </md-menu-item>
-					    <md-menu-item>
-					    	<md-button ng-click="sortMovies('-rank')">Descending</md-button>
-					    </md-menu-item>
-					  </md-menu-content>
-					 </md-menu>
-					</md-menu-bar>
+  		  <md-button type="submit" class="md-primary md-hue-2 md-raised" ng-click="galleryPage('/gallery')" ng-hide="true">Gallery</md-button>
+		    <!--filter menu-->
+			  <md-menu-bar>
+				 <md-menu>
+				   <md-button ng-click="$mdOpenMenu()">
+				     Sort By
+				   </md-button>
+				   <md-menu-content>
+				   	<span class="md-title">Title</span>
+				    <md-menu-item>
+				    	<md-button ng-click="sortMovies('title')">Ascending</md-button>
+				    </md-menu-item>
+				    <md-menu-item>
+				    	<md-button ng-click="sortMovies('-title')">Descending</md-button>
+				    </md-menu-item>
+				    <md-menu-divider></md-menu-divider>
+				    <span class="md-title">Rank</span>
+						<md-menu-item>
+				    	<md-button ng-click="sortMovies('rank')">Ascending</md-button>
+				    </md-menu-item>
+				    <md-menu-item>
+				    	<md-button ng-click="sortMovies('-rank')">Descending</md-button>
+				    </md-menu-item>
+				  </md-menu-content>
+				 </md-menu>
+				</md-menu-bar>
   		</md-card-actions>
   	</md-card>
   	<!--List-->
-	  <md-grid-list class="show-grid-{{showGrid}}" md-cols="3" md-cols-sm="1" md-cols-md="3" md-cols-lg="5" md-cols-gt-lg="7" md-row-height="4:6" md-gutter="12px" >
+	  <md-grid-list md-cols="3" md-cols-sm="1" md-cols-md="3" md-cols-lg="5" md-cols-gt-lg="7" md-row-height="4:6" md-gutter="12px" >
 	 	  <md-grid-tile ng-repeat="m in movies | filter:search | orderBy:sort" md-whiteframe="6">
 				<img class="cover" ng-click="showDetails($event, m.imdbID)" src="/data/images/{{m.imdbID}}.jpg" >
 				<span ng-hide="true" ng-model="movieId">{{m.imdbID}}</span>
@@ -96,7 +96,7 @@
       <md-button ng-click="hide()" md-autofocus>
         Close
       </md-button>
-      <md-button >
+      <md-button type="submit" ng-href="#/details/{{selectedMovie.imdbID}}" ng-click="hide()">
       	More Details
       </md-button>
       <span flex></span>

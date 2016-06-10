@@ -1,5 +1,5 @@
 
-angular.module('imdbApp', ['ngRoute', 'services', 'ngMaterial']);
+angular.module('imdbApp', ['ngRoute', 'services', 'sharedService', 'ngMaterial']);
 
 angular.module('imdbApp')
   .config(['$routeProvider', function($routeProvider) {
@@ -11,6 +11,9 @@ angular.module('imdbApp')
     	templateUrl: 'templates/gallery.html'
     })
     .when('/details', {
+        templateUrl: 'templates/details.html'
+    })
+    .when('/details/:id', {
     	templateUrl: 'templates/details.html'
     })
     .otherwise({
@@ -28,3 +31,5 @@ angular.module('imdbApp')
             });
     });
   }]);
+
+  
