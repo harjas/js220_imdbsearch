@@ -1,3 +1,41 @@
-<div>
-  <h1>This is the details page</h1>
+<div ng-controller="detailsController">
+  <md-card>
+	  <md-card-header>
+	    <md-card-header-text>
+	    	<div layout="row" layout-align="space-between center">
+	      	<md-button md-no-ink="" class="md-primary" ng-click="previous()" ng-disabled="disablePrevious">Previous</md-button>
+	    		<md-button md-no-ink="" class="md-primary" ng-click="next()" ng-disabled="disableNext">Next</md-button>
+	      </div>
+	      <span class="md-title">{{movieDetails.Title}}</span>
+	      <span class="md-subhead">{{movieDetails.Year}}</span>
+
+	    </md-card-header-text>
+	  </md-card-header>
+	  <md-card-title>
+	    <!--md-card-title-text>
+
+	    </md-card-title-text-->
+	    <!--md-card-title-media>
+		    <div class="md-media-gt-lg">
+			  	<img ng-src="/data/images/{{movieDetails.imdbID}}.jpg" class="md-card-image cover" alt="{{movieDetails.Title}} Cover">
+			  </div>
+		  </md-card-title-media-->
+	  </md-card-title>
+	  <md-card-content layout="row" layout-align="start start">
+		  <div layout="column" layout-align="start start">
+		  	<div ng-repeat="key in movieDetailKeys">
+			  	<span class="md-title">{{key}}:</span>
+			    <p class="md-subhead">{{movieDetails[key]}}</p>
+		    </div>
+	    </div>
+	    <div class="md-media-gt-lg">
+		  	<img ng-src="/data/images/{{movieDetails.imdbID}}.jpg" class="md-card-image cover" alt="{{movieDetails.Title}} Cover">
+		  </div>
+	  </md-card-content>
+	  <!--md-card-actions layout="row" layout-align="start center">
+	    <md-button ng-click="previous()" ng-disabled="disablePrevious">Previous</md-button>
+	    <md-button ng-click="next()" ng-disabled="disableNext">Next</md-button>
+	  </md-card-actions-->
+
+	</md-card>
 </div>
