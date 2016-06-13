@@ -8,7 +8,21 @@
   </head>
   <!-- enter app name in ng-app -->
   <body ng-app="imdbApp">
+    <header>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#/list/">IMDB Top 250 Movies</a>
+          </div>
 
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-class="{active: $route.current.activetab == 'list'}"><a href="#/list/"> List</a></li>
+            <li ng-class="{active: $route.current.activetab == 'details'}"><a href="#/details/1"> Details</a></li>
+            <li ng-class="{active: $route.current.activetab == 'gallery'}"><a href="#/gallery/"> Gallery</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <!-- add ng-view to this container for the router to work -->
     <div class="container" ng-view></div>
 
@@ -18,5 +32,6 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/imdb.service.js"></script>
     <script type="text/javascript" src="js/list.controller.js"></script>
+    <script type="text/javascript" src="js/details.controller.js"></script>
   </body>
 </html>
