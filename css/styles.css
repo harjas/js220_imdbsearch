@@ -22,3 +22,7 @@
 	text-transform: uppercase;
 	display: inline;
 }
+
+.spacing {
+	margin-bottom: 25px;
+}

@@ -8,21 +8,29 @@
 
 <div ng-controller="ListController">
 	<div class="container">
-		<h1>IMDB Movie List</h1>
+		<div class="row">
+			<div class="col-md-6">
+				<h2>List</h2>
+			</div>	
+			<div class="col-md-6">
+				<div class="pull-right">
+					<form ng-submit="getMovies()" class="form-inline">
+						<input type="text" class="form-control" id="movieSearchInput" placeholder="Enter Search Here" ng-model="movieText.title" required>
+						<button type="submit" class="btn btn-primary">submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<form ng-submit="getMovies()" class="form-inline">
-		<input type="text" class="form-control" id="movieSearchInput" placeholder="Enter Search Here" ng-model="movieText.title" required>
-		<button type="submit" class="btn btn-primary">submit</button>
-	</form>
 	<br>
 	<div class="nav">
 		<div class="container">
-			<ul class="pull-right">
+			<ul class="text-center">
 				<li>Sort by:</li>
-				<li ng-click="sorting = 'rank'">Rank 1-250</li>
-				<li ng-click="sorting = '-rank'">Rank 250-1</li>
-				<li ng-click="sorting = 'title'">Title A-Z</li>
-				<li ng-click="sorting = '-title'">Title Z-A</li>
+				<li ng-click="sorting = 'rank'"><a href="">Rank 1-250</a></li>
+				<li ng-click="sorting = '-rank'"><a href="">Rank 250-1</a></li>
+				<li ng-click="sorting = 'title'"><a href="">Title A-Z</a></li>
+				<li ng-click="sorting = '-title'"><a href="">Title Z-A</a></li>
 			</ul>
 		</div>
 	</div>
@@ -31,14 +39,18 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6" ng-repeat="movie in movies | filter:movieText | orderBy:sorting">
-					<div class="col-md-12">
-					<div class="panel">
-						<h2>{{movie.title}}</h2>
-						<p><strong>IMDB Rank: </strong>{{movie.rank}}</p>
-						<p><strong>Released: </strong>{{movie.released}}</p>
-						<p><strong>Director: </strong>{{movie.director[0]}}</p>
-						<br>
-					</div>
+					<div class="panel col-md-12">
+						<div class="col-md-3">
+						<p></p>
+							<img src="../data/images/{{movie.imdbID}}.jpg" width=80%>
+						</div>
+						<div class="col-md-9">
+							<h3><a href="#/details/{{movie.rank}}">{{movie.title}}</a></h3>
+							<p><strong>IMDB Rank: </strong>{{movie.rank}}
+							<br><strong>Released: </strong>{{movie.released}}
+							<br><strong>Director: </strong>{{movie.director[0]}}</p>
+							<br>
+						</div>
 					</div>
 				</div>
 			</div>
