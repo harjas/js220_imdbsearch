@@ -6,6 +6,54 @@
      to experience if you were using someone else's built application?
  -->
 
-<div ng-controller="listController">
-  <h1>This is the list page!</h1>
+<div ng-controller="ListController">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>List</h2>
+			</div>	
+			<div class="col-md-6">
+				<div class="pull-right">
+					<form ng-submit="getMovies()" class="form-inline">
+						<input type="text" class="form-control" id="movieSearchInput" placeholder="Enter Search Here" ng-model="movieText.title" required>
+						<button type="submit" class="btn btn-primary">submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="nav">
+		<div class="container">
+			<ul class="text-center">
+				<li>Sort by:</li>
+				<li ng-click="sorting = 'rank'"><a href="">Rank 1-250</a></li>
+				<li ng-click="sorting = '-rank'"><a href="">Rank 250-1</a></li>
+				<li ng-click="sorting = 'title'"><a href="">Title A-Z</a></li>
+				<li ng-click="sorting = '-title'"><a href="">Title Z-A</a></li>
+			</ul>
+		</div>
+	</div>
+	<br>
+	<div class="movie-list">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6" ng-repeat="movie in movies | filter:movieText | orderBy:sorting">
+					<div class="panel col-md-12">
+						<div class="col-md-3">
+						<p></p>
+							<img src="../data/images/{{movie.imdbID}}.jpg" width=80%>
+						</div>
+						<div class="col-md-9">
+							<h3><a href="#/details/{{movie.rank}}">{{movie.title}}</a></h3>
+							<p><strong>IMDB Rank: </strong>{{movie.rank}}
+							<br><strong>Released: </strong>{{movie.released}}
+							<br><strong>Director: </strong>{{movie.director[0]}}</p>
+							<br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
