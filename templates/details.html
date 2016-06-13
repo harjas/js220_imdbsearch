@@ -1,3 +1,33 @@
-<div>
-  <h1>This is the details page</h1>
+<div ng-controller='DetailsController'>
+<!--   <h1>This is the details page</h1> -->
+	<div class="container">
+	<div class="row">
+	<div class="col-md-12 spacing">
+		<h2>Details</h2>
+	</div>
+	<div class="nav spacing">
+		<div class="container">
+			<p><strong>IMDB Rank: </strong>{{movie.rank}}<br>
+				<a ng-if="movie.rank > 1" href="#/details/{{movie.rank-1}}">Back (#{{movie.rank-1}})</a>
+				<span ng-if="movie.rank <= 1">Back</span>
+				<nobr> - </nobr>
+				<a ng-if="movie.rank < 250" href="#/details/{{movie.rank+1}}">Next (#{{movie.rank+1}})</a>
+				<span ng-if="movie.rank >= 250">Next</span>
+			</p>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+		<div class="col-md-2">
+			<img src="../data/images/{{movie.imdbID}}.jpg" width=100%>
+		</div>
+		<div class="col-md-10">
+			<h2>{{movie.title}}</h2>
+			<p><strong>Released: </strong>{{movie.released}}</p>
+			<p><strong>Director: </strong><span ng-repeat="director in movie.director">{{director}}{{$last ? '' : ', '}}<span></p>
+			<p><strong>Starring: </strong><span ng-repeat="actor in movie.actors">{{actor}}{{$last ? '' : ', '}}<span></p>
+			<p><strong>Genre(s): </strong><span ng-repeat="genre in movie.genre">{{genre}}{{$last ? '' : ', '}}<span></p>
+		</div>
+		</div>
+	</div>
 </div>

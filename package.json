@@ -1,5 +1,5 @@
 {
-  "name": "js220_imdb",
+  "name": "js220_imdbsearch",
   "version": "1.0.0",
   "description": "IMDB Top 250 application built with Angular ",
   "main": "app.js",
@@ -13,5 +13,8 @@
     "angular-route": "^1.5.5",
     "bootstrap": "^3.3.6",
     "jquery": "^2.2.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
   }
 }
